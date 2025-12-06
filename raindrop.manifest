@@ -1,0 +1,25 @@
+application "storyteller-tales" {
+
+  service "api-gateway" {
+    visibility = "public"
+  }
+
+  service "story-generator" {
+    visibility = "private"
+  }
+
+  service "audio-narrator" {
+    visibility = "private"
+  }
+
+  sql_database "storyteller-db" {}
+
+  bucket "audio-storage" {
+    visibility = "public"
+  }
+
+  env "GOOGLE_CLOUD_CREDENTIALS" {
+    secret = true
+  }
+
+}

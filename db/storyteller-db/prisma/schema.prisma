@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./storyteller.db"
+}
+
+model Narrator {
+  id                  String   @id
+  name                String
+  description         String
+  culturalBackground  String   @map("cultural_background")
+  voiceStyle          String   @map("voice_style")
+  examplePhrases      String?  @map("example_phrases")
+  elevenlabsVoiceId   String?  @map("elevenlabs_voice_id")
+  createdAt           Int      @map("created_at")
+  stories             Story[]
+
+  @@index([culturalBackground])
+  @@map("narrators")
+}
+
+model Myth {
+  id              String   @id
+  name            String
+  culturalOrigin  String   @map("cultural_origin")
+  officialText    String   @map("official_text")
+  summary         String?
+  keyCharacters   String?  @map("key_characters")
+  createdAt       Int      @map("created_at")
+  stories         Story[]
+
+  @@index([culturalOrigin])
+  @@map("myths")
+}
+
+model Story {
+  id              String   @id
+  narratorId      String   @map("narrator_id")
+  mythId          String   @map("myth_id")
+  generatedStory  String   @map("generated_story")
+  audioUrl        String?  @map("audio_url")
+  createdAt       Int      @map("created_at")
+  narrator        Narrator @relation(fields: [narratorId], references: [id])
+  myth            Myth     @relation(fields: [mythId], references: [id])
+
+  @@index([narratorId])
+  @@index([mythId])
+  @@index([createdAt])
+  @@map("stories")
+}
