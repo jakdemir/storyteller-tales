@@ -4,8 +4,8 @@ A web application featuring Turkish and Mesopotamian myths with AI-powered Turki
 
 ## 🌐 Live Demo
 
-**Frontend**: https://storyteller-ui-six.vercel.app
-**Backend**: https://svc-01kbsbg9e8ga1xewced316np60.01kbgrddbsz9n6z3awdy4pb0xy.lmapp.run
+**Frontend**: https://anadolu-mitolojileri-jakdemir.vercel.app  
+**Backend**: Raindrop Cloud (private endpoint)
 
 ## 📚 Content
 
